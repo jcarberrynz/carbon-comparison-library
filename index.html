@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carbon Library 🌍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🌍</span>
+      <div>
+        <span class="logo-text">Carbon Library</span>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="stat-pill" id="total-count">Loading…</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1>Beer vs Baths?</h1>
+    <p class="hero-sub">From a morning coffee to an hour of Netflix — explore the carbon impact of everyday life, and discover whether a beer or a bath has a bigger footprint.</p>
+    <div class="search-bar-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="Search foods, travel, gadgets…" autocomplete="off" aria-label="Search the carbon library" />
+      <button class="clear-btn" id="clear-btn" aria-label="Clear search" style="display:none">✕</button>
+    </div>
+  </section>
+
+  <section class="filter-row" aria-label="Filter by category">
+    <button class="filter-btn active" data-cat="all">All <span class="count-badge" id="badge-all"></span></button>
+    <button class="filter-btn" data-cat="food">🍽 Food &amp; Drink</button>
+    <button class="filter-btn" data-cat="travel">✈️ Travel</button>
+    <button class="filter-btn" data-cat="energy">⚡ Home &amp; Energy</button>
+    <button class="filter-btn" data-cat="shopping">🛍 Shopping</button>
+    <button class="filter-btn" data-cat="digital">📱 Digital</button>
+    <button class="filter-btn" data-cat="nature">🌿 Nature</button>
+  </section>
+
+  <section class="sort-row">
+    <label for="sort-select">Sort by:</label>
+    <select id="sort-select">
+      <option value="impact-desc">Highest impact first</option>
+      <option value="impact-asc">Lowest impact first</option>
+      <option value="alpha">A → Z</option>
+    </select>
+    <span class="results-count" id="results-label"></span>
+  </section>
+
+  <div class="cards-grid" id="cards-grid" role="list" aria-live="polite" aria-label="Carbon footprint entries">
+  </div>
+
+  <div class="empty-state" id="empty-state" hidden>
+    <p>😅 Nothing found for that search.</p>
+    <p>Try "beef", "flight", or "Netflix".</p>
+  </div>
+
+  <section class="equivalents-panel">
+    <h2>🌳 Carbon Equivalents Explorer</h2>
+    <p class="panel-sub">Enter an amount of CO₂ to discover what it means in the real world.</p>
+    <div class="equiv-input-row">
+      <input type="number" id="equiv-input" value="100" min="0" step="1" aria-label="Enter CO₂ in kg" />
+      <span class="equiv-unit">kg CO₂</span>
+      <button class="equiv-btn" onclick="computeEquivalents()">Calculate ✨</button>
+    </div>
+    <div class="equiv-results" id="equiv-results"></div>
+  </section>
+
+  <section class="fun-facts-panel">
+    <h2>💡 Did You Know?</h2>
+    <div class="facts-grid" id="facts-grid"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Data sourced from peer-reviewed literature, IPCC reports, EPA, and lifecycle analyses. All values are approximate averages — actual emissions vary by region, behaviour, and supply chain. <a href="sources.html">View all sources →</a></p>
+  <p class="footer-credit">Built with 💚 for the planet · <a href="https://github.com/yourusername/carbon-footprint-library">GitHub</a></p>
+</footer>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
